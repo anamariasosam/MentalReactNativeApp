@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import LibraryReducer from './LibraryReducer'
+import TileReducer from './TileReducer'
 import SelectionReducer from './SelectionReducer'
 
 export default combineReducers({
-  libraries: LibraryReducer,
-  selectedLibraryId: SelectionReducer
+  tiles: TileReducer,
+  selectedTileId: SelectionReducer
 })
