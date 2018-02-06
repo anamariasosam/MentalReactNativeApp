@@ -16,7 +16,7 @@ class Tile extends Component {
     super(props)
 
     this.state = {
-      imgOpacity : 0
+      imgOpacity : 1
     }
 
     this.showImage = this.showImage.bind(this)

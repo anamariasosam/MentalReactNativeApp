@@ -1,9 +1,19 @@
 import data from './TilesList.json'
 import shuffle from 'lodash.shuffle'
 
-
 export default () => {
-  const tiles1 = shuffle(data)
-  const tiles2 = shuffle(data)
-  return tiles1.concat(tiles2)
+  const suffleTiles = shuffle(data).concat(shuffle(data))
+  let _tiles = []
+
+  suffleTiles.map((tile, index) =>{
+    _tiles.push({
+      id: index,
+      imageUrl: tile.imageUrl,
+      title: tile.title,
+      flipped: false,
+      matched: false
+    })
+  })
+
+  return _tiles
 }

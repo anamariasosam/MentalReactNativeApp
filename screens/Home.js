@@ -18,8 +18,8 @@ class Home extends Component {
     this.renderTiles = this.renderTiles.bind(this)
   }
 
-  renderTiles(tile) {
-    return this.props.tiles.map((tile, index) => <Tile tile={tile} key={index} />)
+  renderTiles() {
+    return this.props.tiles.map(tile => <Tile tile={tile} key={tile.id}  />)
   }
 
   render() {
