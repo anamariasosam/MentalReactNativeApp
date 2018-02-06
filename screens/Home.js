@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux'
 
-import ListItem from '../components/ListItem'
+import Tile from '../components/Tile'
 
 class Home extends Component {
   static navigationOptions = {
@@ -18,23 +18,23 @@ class Home extends Component {
     this.state = {
       dataSource: []
     }
-    this.populateLibraries = this.populateLibraries.bind(this)
+    this.populateTiles = this.populateTiles.bind(this)
     this.renderRow = this.renderRow.bind(this)
   }
 
   componentWillMount() {
-    this.populateLibraries()
+    this.populateTiles()
   }
 
-  populateLibraries() {
+  populateTiles() {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.setState({
-      dataSource: ds.cloneWithRows(this.props.libraries),
+      dataSource: ds.cloneWithRows(this.props.tiles),
     })
   }
 
-  renderRow(library) {
-    return <ListItem library={library}/>
+  renderRow(tile) {
+    return <Tile tile={tile}/>
   }
 
   render() {
@@ -50,7 +50,7 @@ class Home extends Component {
 // take a global state object
 const mapStateToProps = state => {
   return {
-    libraries: state.libraries
+    tiles: state.tiles
   }
 };
 

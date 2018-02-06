@@ -8,25 +8,25 @@ import {
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class ListItem extends Component {
+class Tile extends Component {
   componentWillUpdate() {
     LayoutAnimation.linear();
   }
 
   renderDescription() {
-    const { library, expanded } = this.props;
+    const { tile, expanded } = this.props;
 
     if (expanded) {
       return (
         <Text style={{ flex: 1 }}>
-          {library.description}
+          {tile.description}
         </Text>
       );
     }
   }
 
   render() {
-    const { id, title } = this.props.library;
+    const { id, title } = this.props.tile;
 
     return (
       <View>
@@ -35,7 +35,7 @@ class ListItem extends Component {
         </Text>
         <Button
           title="+"
-          onPress={() => this.props.selectLibrary(id)}
+          onPress={() => this.props.selectTile(id)}
         />
         {this.renderDescription()}
       </View>
@@ -44,9 +44,8 @@ class ListItem extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const expanded = state.selectedLibraryId === ownProps.library.id;
-
+  const expanded = state.selectedTileId === ownProps.tile.id;
   return { expanded };
 };
 
-export default connect(mapStateToProps, actions)(ListItem);
+export default connect(mapStateToProps, actions)(Tile);
