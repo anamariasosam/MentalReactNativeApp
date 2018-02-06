@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import {
   Text,
   Button,
-  View,
-  LayoutAnimation
+  TouchableHighlight,
+  LayoutAnimation,
+  Image,
+  View
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -13,14 +15,15 @@ class Tile extends Component {
     LayoutAnimation.linear();
   }
 
-  renderDescription() {
-    const { tile, expanded } = this.props;
+  showImage() {
+    const { tile, clicked } = this.props;
 
-    if (expanded) {
+    if (clicked) {
       return (
-        <Text style={{ flex: 1 }}>
-          {tile.description}
-        </Text>
+        <Image
+          style={{width: 50, height: 50}}
+          source={{uri: tile.imageUrl}}
+        />
       );
     }
   }
@@ -30,22 +33,21 @@ class Tile extends Component {
 
     return (
       <View>
-        <Text>
-          {title}
-        </Text>
-        <Button
-          title="+"
-          onPress={() => this.props.selectTile(id)}
-        />
-        {this.renderDescription()}
+        <TouchableHighlight onPress={() => this.props.selectTile(id)}>
+          <Text>
+            {title}
+          </Text>
+        </TouchableHighlight>
+        {this.showImage()}
       </View>
+
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const expanded = state.selectedTileId === ownProps.tile.id;
-  return { expanded };
+  const clicked = state.selectedTileId === ownProps.tile.id;
+  return { clicked };
 };
 
 export default connect(mapStateToProps, actions)(Tile);
