@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {
-  Text,
-  ListView,
+  StyleSheet,
+  View,
 } from 'react-native';
 import {connect} from 'react-redux'
 
@@ -9,43 +9,39 @@ import Tile from '../components/Tile'
 
 class Home extends Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Game',
   };
 
   constructor(props) {
     super(props)
 
-    this.state = {
-      dataSource: []
-    }
-    this.populateTiles = this.populateTiles.bind(this)
-    this.renderRow = this.renderRow.bind(this)
+    this.renderTiles = this.renderTiles.bind(this)
   }
 
-  componentWillMount() {
-    this.populateTiles()
-  }
-
-  populateTiles() {
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.setState({
-      dataSource: ds.cloneWithRows(this.props.tiles),
-    })
-  }
-
-  renderRow(tile) {
-    return <Tile tile={tile}/>
+  renderTiles(tile) {
+    return this.props.tiles.map((tile, index) => <Tile tile={tile} key={index} />)
   }
 
   render() {
     return(
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow}
-      />
+      <View style={{ flex: 1 }}>
+        <View style={styles.board}>
+          {this.renderTiles()}
+        </View>
+      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  board: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    marginBottom: 10
+  }
+});
 
 // take a global state object
 const mapStateToProps = state => {

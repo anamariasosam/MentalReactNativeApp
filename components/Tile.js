@@ -2,52 +2,65 @@ import React, { Component } from 'react';
 import {
   Text,
   Button,
-  TouchableHighlight,
+  TouchableOpacity,
   LayoutAnimation,
   Image,
-  View
+  View,
+  StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class Tile extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      imgOpacity : 0
+    }
+
+    this.showImage = this.showImage.bind(this)
+  }
+
   componentWillUpdate() {
     LayoutAnimation.linear();
   }
 
   showImage() {
-    const { tile, clicked } = this.props;
-
-    if (clicked) {
-      return (
-        <Image
-          style={{width: 50, height: 50}}
-          source={{uri: tile.imageUrl}}
-        />
-      );
-    }
+    this.setState({
+      imgOpacity: 1
+    })
   }
 
   render() {
-    const { id, title } = this.props.tile;
+    const { id, imageUrl } = this.props.tile;
 
     return (
       <View>
-        <TouchableHighlight onPress={() => this.props.selectTile(id)}>
-          <Text>
-            {title}
-          </Text>
-        </TouchableHighlight>
-        {this.showImage()}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this.showImage}
+        >
+          <Image
+            style={{ width: 50, height: 50, opacity: this.state.imgOpacity }}
+            source={{uri: imageUrl}}
+          />
+        </TouchableOpacity>
       </View>
 
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const clicked = state.selectedTileId === ownProps.tile.id;
-  return { clicked };
-};
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: '#000',
+    padding: 10,
+    width: 70,
+    height: 70,
+    marginTop: 10
+  }
+});
 
-export default connect(mapStateToProps, actions)(Tile);
+
+export default connect(null, actions)(Tile);
