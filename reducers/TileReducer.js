@@ -11,7 +11,8 @@ export default () => {
       imageUrl: tile.imageUrl,
       title: tile.title,
       flipped: false,
-      matched: false
+      matched: false,
+      opacity: 0
     })
   })
 

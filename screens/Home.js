@@ -15,11 +15,15 @@ class Home extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      allTiles: this.props.tiles
+    }
+
     this.renderTiles = this.renderTiles.bind(this)
   }
 
   renderTiles() {
-    return this.props.tiles.map(tile => <Tile tile={tile} key={tile.id}  />)
+    return this.state.allTiles.map(tile => <Tile tile={tile} key={tile.id}  />)
   }
 
   render() {

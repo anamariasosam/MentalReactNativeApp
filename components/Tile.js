@@ -15,10 +15,6 @@ class Tile extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      imgOpacity : 1
-    }
-
     this.showImage = this.showImage.bind(this)
   }
 
@@ -27,22 +23,20 @@ class Tile extends Component {
   }
 
   showImage() {
-    this.setState({
-      imgOpacity: 1
-    })
+    this.props.selectTile(this.props.tile.id)
   }
 
   render() {
-    const { id, imageUrl } = this.props.tile;
+    const { imageUrl, opacity } = this.props.tile;
 
     return (
       <View>
         <TouchableOpacity
           style={styles.button}
-          onPress={this.showImage}
+          onPress={() => this.showImage()}
         >
           <Image
-            style={{ width: 50, height: 50, opacity: this.state.imgOpacity }}
+            style={{ width: 50, height: 50, opacity }}
             source={{uri: imageUrl}}
           />
         </TouchableOpacity>
@@ -61,6 +55,5 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 });
-
 
 export default connect(null, actions)(Tile);
