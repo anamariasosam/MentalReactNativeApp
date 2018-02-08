@@ -4,6 +4,7 @@ import {
   View,
 } from 'react-native';
 import {connect} from 'react-redux'
+import {resetTiles} from '../actions'
 
 import Tile from '../components/Tile'
 
@@ -12,18 +13,14 @@ class Home extends Component {
     title: 'Game',
   };
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      allTiles: this.props.tiles
+  componentWillUpdate(nextProps) {
+    if (nextProps.selected.reset) {
+      this.props.resetTiles()
     }
-
-    this.renderTiles = this.renderTiles.bind(this)
   }
 
   renderTiles() {
-    return this.state.allTiles.map(tile => <Tile tile={tile} key={tile.id}  />)
+    return this.props.tiles.map(tile => <Tile {...tile} key={tile.id} />)
   }
 
   render() {
@@ -50,8 +47,9 @@ const styles = StyleSheet.create({
 // take a global state object
 const mapStateToProps = state => {
   return {
-    tiles: state.tiles
+    tiles: state.tiles,
+    selected: state.selected
   }
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, {resetTiles})(Home);

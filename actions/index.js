@@ -4,3 +4,9 @@ export const selectTile = (tileId) => {
     payload: tileId
   }
 }
+
+export const resetTiles = () => {
+  return {
+    type: 'reset_tiles'
+  }
+}

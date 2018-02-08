@@ -1,27 +1,23 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import ReduxThunk from 'redux-thunk'
+import store from './store/store.dev'
 
-import reducers from './reducers'
-
-import Home from './screens/Home';
-import Ranking from './screens/Ranking';
+import Home from './screens/Home'
+import Ranking from './screens/Ranking'
 
 export default class App extends React.Component {
   render() {
     const Navigation = StackNavigator({
-        home: { screen: Home },
-        Ranking: { screen: Ranking },
-    });
+      Ranking: { screen: Ranking },
+      Home: { screen: Home },
+    })
 
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
+
     return (
       <Provider store={store}>
         <Navigation />
       </Provider>
-    );
+    )
   }
 }

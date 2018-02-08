@@ -18,16 +18,16 @@ class Tile extends Component {
     this.showImage = this.showImage.bind(this)
   }
 
-  componentWillUpdate() {
-    LayoutAnimation.linear();
-  }
+  // componentWillUpdate() {
+  //   LayoutAnimation.linear();
+  // }
 
   showImage() {
-    this.props.selectTile(this.props.tile.id)
+    this.props.selectTile({id: this.props.id, title: this.props.title })
   }
 
   render() {
-    const { imageUrl, opacity } = this.props.tile;
+    const { imageUrl, opacity } = this.props;
 
     return (
       <View>
