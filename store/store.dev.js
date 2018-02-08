@@ -12,7 +12,7 @@ const tiles = () => {
       id: index,
       imageUrl: tile.imageUrl,
       title: tile.title,
-      matched: false,
+      flipped: false,
       opacity: 0
     }
   ))

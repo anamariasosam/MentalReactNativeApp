@@ -28,10 +28,10 @@ class Tile extends Component {
 
   render() {
     const { imageUrl, opacity } = this.props;
-
     return (
       <View>
         <TouchableOpacity
+          disabled={opacity ? true : false}
           style={styles.button}
           onPress={() => this.showImage()}
         >

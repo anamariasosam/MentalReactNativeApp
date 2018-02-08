@@ -1,26 +1,26 @@
 [
   {
-    "name": "Grapes",
+    "title": "Grapes",
     "imageUrl": "https://emojipedia-us.s3.amazonaws.com/thumbs/120/apple/118/grapes_1f347.png",
   },
   {
-    "name": "Melon",
+    "title": "Melon",
     "imageUrl": "https://emojipedia-us.s3.amazonaws.com/thumbs/120/apple/118/melon_1f348.png",
   },
   {
-    "name": "Watermelon",
+    "title": "Watermelon",
     "imageUrl": "https://emojipedia-us.s3.amazonaws.com/thumbs/120/apple/118/watermelon_1f349.png",
   },
   {
-    "name": "Tangerine",
+    "title": "Tangerine",
     "imageUrl": "https://emojipedia-us.s3.amazonaws.com/thumbs/120/apple/118/tangerine_1f34a.png",
   },
   {
-    "name": "Lemon",
+    "title": "Lemon",
     "imageUrl": "https://emojipedia-us.s3.amazonaws.com/thumbs/120/apple/118/lemon_1f34b.png",
   },
   {
-    "name": "Banana",
+    "title": "Banana",
     "imageUrl": "https://emojipedia-us.s3.amazonaws.com/thumbs/120/apple/118/banana_1f34c.png",
   }
 ]

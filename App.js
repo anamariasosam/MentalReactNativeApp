@@ -9,8 +9,8 @@ import Ranking from './screens/Ranking'
 export default class App extends React.Component {
   render() {
     const Navigation = StackNavigator({
-      Ranking: { screen: Ranking },
       Home: { screen: Home },
+      Ranking: { screen: Ranking },
     })
 
 

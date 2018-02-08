@@ -17,7 +17,7 @@ export default (state = [], action) => {
       return tiles
     case 'reset_tiles':
       return state.map(tile => {
-        // resetear tiles que no sean match true!!! 
+        // resetear tiles que no sean match true!!!
         tile.opacity = 0
         return tile
       })
