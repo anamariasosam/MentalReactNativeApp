@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {
   StyleSheet,
-  View,
-  Text,
+  View
 } from 'react-native'
+import { Overlay, Text } from 'react-native-elements';
 
 import tiles from '../store/tiles'
 
@@ -18,9 +18,10 @@ class Home extends Component {
     super(props)
 
     this.state = {
-      tiles: tiles(),
+      tiles: tiles(0),
       selectedCards: [],
-      matchedCount: 0
+      matchedCount: 0,
+      levelEnd: false,
     }
   }
 
@@ -58,7 +59,13 @@ class Home extends Component {
           }, 500)
 
         } else {
-          this.setState({ matchedCount: this.state.matchedCount+1 })
+          const matchedCount = this.state.matchedCount + 1
+
+          if(matchedCount  == this.state.tiles.length / 2){
+            this.setState({ levelEnd: true })
+          }
+
+          this.setState({ matchedCount })
         }
 
         this.setState({ selectedCards: [] })
@@ -93,6 +100,15 @@ class Home extends Component {
             /
             {this.state.tiles.length / 2}
         </Text>
+        <Overlay
+          isVisible={this.state.levelEnd}
+          windowBackgroundColor='rgba(255, 255, 255, .5)'
+          overlayBackgroundColor='red'
+          width='auto'
+          height='auto'
+          >
+          <Text>Hello from Overlay!</Text>
+        </Overlay>
       </View>
     )
   }
