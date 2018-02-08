@@ -8,6 +8,7 @@ import { Overlay, Text } from 'react-native-elements';
 import tiles from '../store/tiles'
 
 import TileItem from '../components/TileItem'
+import OverlayContent from '../components/OverlayContent'
 
 class Home extends Component {
   static navigationOptions = {
@@ -62,7 +63,10 @@ class Home extends Component {
           const matchedCount = this.state.matchedCount + 1
 
           if(matchedCount  == this.state.tiles.length / 2){
-            this.setState({ levelEnd: true })
+            setTimeout( () => {
+              this.setState({ levelEnd: true })
+            }, 500)
+
           }
 
           this.setState({ matchedCount })
@@ -102,12 +106,17 @@ class Home extends Component {
         </Text>
         <Overlay
           isVisible={this.state.levelEnd}
-          windowBackgroundColor='rgba(255, 255, 255, .5)'
-          overlayBackgroundColor='red'
+          windowBackgroundColor='rgba(255, 255, 255, .9)'
           width='auto'
           height='auto'
+          overlayBackgroundColor='black'
+          borderRadius={6}
           >
-          <Text>Hello from Overlay!</Text>
+            <OverlayContent
+              text='🎉 TERMINASTE 🎉'
+              buttonText='Siguiente Nivel'
+              navigation={this.props.navigation}
+            />
         </Overlay>
       </View>
     )
