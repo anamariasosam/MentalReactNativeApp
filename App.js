@@ -1,7 +1,6 @@
 import React from 'react'
+import {View} from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import { Provider } from 'react-redux'
-import store from './store/store.dev'
 
 import Home from './screens/Home'
 import Ranking from './screens/Ranking'
@@ -13,11 +12,11 @@ export default class App extends React.Component {
       Ranking: { screen: Ranking },
     })
 
-
     return (
-      <Provider store={store}>
+      <View style={{ flex: 1 }}>
         <Navigation />
-      </Provider>
+      </View>
+
     )
   }
 }
