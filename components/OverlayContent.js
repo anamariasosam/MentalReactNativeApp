@@ -25,7 +25,7 @@ const OverlayContent = ({navigation, text, buttonText}) => {
       <Button
         buttonStyle={styles.button}
         text={buttonText}
-        onPress={() => navigate('Ranking')}
+        onPress={() => navigate('Home')}
       />
     </View>
 
@@ -34,7 +34,7 @@ const OverlayContent = ({navigation, text, buttonText}) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor:'#bf7adb'
+    backgroundColor:'#FF9F1C'
   },
   title: {
     marginBottom: 10,

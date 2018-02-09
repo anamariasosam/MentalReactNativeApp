@@ -9,6 +9,7 @@ import tiles from '../store/tiles'
 
 import TileItem from '../components/TileItem'
 import OverlayContent from '../components/OverlayContent'
+import Status from '../components/Status'
 
 class Home extends Component {
   static navigationOptions = {
@@ -23,7 +24,33 @@ class Home extends Component {
       selectedCards: [],
       matchedCount: 0,
       levelEnd: false,
+      timer: null,
+      counter: 0
     }
+
+    this.tick = this.tick.bind(this)
+  }
+  componentDidMount() {
+    let timer = setInterval(this.tick, 100);
+    this.setState({timer});
+  }
+
+  componentWillUnmount() {
+    this.clearInterval(this.state.timer);
+  }
+
+  convertMinsToHrsMins(mins) {
+    let h = Math.floor(mins / 60);
+    let m = mins % 60;
+    h = h < 10 ? '0' + h : h;
+    m = m < 10 ? '0' + m : m;
+    return `${h}:${m}`;
+  }
+
+  tick() {
+    this.setState({
+      counter: this.state.counter + 1
+    });
   }
 
   changeOpacity(id, opacity) {
@@ -94,22 +121,21 @@ class Home extends Component {
 
   render() {
     return(
-      <View>
+      <View style={styles.game}>
         <View style={styles.board}>
           {this.renderTiles()}
         </View>
-        <Text>
-            Parejas encontradas:
-            {this.state.matchedCount}
-            /
-            {this.state.tiles.length / 2}
-        </Text>
+        <Status
+          matched={this.state.matchedCount}
+          cardsTotal={this.state.tiles.length/2}
+          time={this.convertMinsToHrsMins(this.state.counter)}
+        />
         <Overlay
           isVisible={this.state.levelEnd}
           windowBackgroundColor='rgba(255, 255, 255, .9)'
           width='auto'
           height='auto'
-          overlayBackgroundColor='black'
+          overlayBackgroundColor='#E71D36'
           borderRadius={6}
           >
             <OverlayContent
@@ -124,8 +150,11 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
+  game: {
+    flex: 1,
+    backgroundColor: '#FDFFFC'
+  },
   board: {
-    alignItems: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',

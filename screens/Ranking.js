@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {
-  Text,
   View,
   Button
 } from 'react-native';
@@ -16,9 +15,8 @@ class Ranking extends Component {
 
     return(
       <View>
-        <Text>Ranking</Text>
         <Button
-          title="Go to Home"
+          title="Volver a jugar"
           onPress={() => navigate('Home')}
         />
       </View>

@@ -21,7 +21,7 @@ const TileItem = ({ imageUrl, opacity, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#000',
+    backgroundColor: '#011627',
     padding: 10,
     width: 70,
     height: 70,
