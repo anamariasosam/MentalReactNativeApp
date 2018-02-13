@@ -43,7 +43,7 @@ class Home extends Component {
     let seconds = Math.floor(ms / 60);
     let miliseconds = ms % 100;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-    miliseconds = miliseconds < 10 ? '0' + miliseconds : miliseconds;
+    miliseconds = String(miliseconds).charAt(1);
     return `${seconds}:${miliseconds}`;
   }
 
