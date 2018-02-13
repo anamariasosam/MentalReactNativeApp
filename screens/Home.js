@@ -31,7 +31,7 @@ class Home extends Component {
     this.tick = this.tick.bind(this)
   }
   componentDidMount() {
-    let timer = setInterval(this.tick, 10);
+    let timer = setInterval(this.tick, 1000);
     this.setState({timer});
   }
 
@@ -39,12 +39,12 @@ class Home extends Component {
     this.clearInterval(this.state.timer);
   }
 
-  convertMinsToHrsMins(ms) {
-    let seconds = Math.floor(ms / 60);
-    let miliseconds = ms % 100;
+  convertMinsToHrsMins(seg) {
+    let minutes = Math.floor(seg / 60);
+    let seconds = seg % 60;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-    miliseconds = String(miliseconds).charAt(1);
-    return `${seconds}:${miliseconds}`;
+    return `${minutes}:${seconds}`;
   }
 
   tick() {
