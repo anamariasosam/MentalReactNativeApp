@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {
   StyleSheet,
-  View
+  View,
 } from 'react-native'
-import { Overlay, Text } from 'react-native-elements';
 
 import tiles from '../store/tiles'
 
@@ -161,12 +160,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FDFFFC'
   },
   board: {
-    padding: 10,
+    padding: 15,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    marginBottom: 10
-  }
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
 })
 
 export default Game
