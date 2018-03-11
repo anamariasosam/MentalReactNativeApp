@@ -11,8 +11,8 @@ import TilesList from '../store/TilesList'
 const Tile = ({ name, opacity, onPress, gallery }) => {
 
   return (
-    <View>
-      <TouchableOpacity disabled={opacity ? true : false} style={styles.button} onPress={onPress}>
+    <View style={styles.card}>
+      <TouchableOpacity disabled={opacity ? true : false} style={styles.image} onPress={onPress}>
         <Image
           style={{ width: 50, height: 50, opacity }}
           source={TilesList[gallery][name]}
@@ -23,12 +23,14 @@ const Tile = ({ name, opacity, onPress, gallery }) => {
 }
 
 const styles = StyleSheet.create({
-  button: {
+  image: {
     backgroundColor: '#BEBEBE',
     padding: 1,
     width: 50,
-    height: 50,
-    marginTop: 10
+    height: 50
+  },
+  card: {
+    margin: 5
   }
 })
 

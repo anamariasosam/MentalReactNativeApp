@@ -13,7 +13,7 @@ import Status from '../components/Status'
 
 class Game extends Component {
   static navigationOptions = {
-    title: 'Juego de Parejas 🧠',
+    title: 'Mental',
     headerLeft: null
   }
 
@@ -29,10 +29,12 @@ class Game extends Component {
       timer: null,
       counter: 0,
       gallery,
+      openedCount: 0,
     }
 
     this.tick = this.tick.bind(this)
   }
+
   componentDidMount() {
     let timer = setInterval(this.tick, 1000);
     this.setState({timer});
@@ -56,6 +58,7 @@ class Game extends Component {
     });
   }
 
+  // Show Tile Seleected
   changeOpacity(id, opacity) {
     const tiles = this.state.tiles
     const tileIndex = tiles.findIndex(item => item.id === id)
@@ -73,6 +76,7 @@ class Game extends Component {
     this.setState({tiles: tiles_updated})
   }
 
+  // Validate two cards openened
   validateCard(tile) {
     const cards = this.state.selectedCards
 
@@ -97,6 +101,8 @@ class Game extends Component {
               this.setState({ levelEnd: true })
             }, 500)
 
+            this.setScore()
+
           }
 
           this.setState({ matchedCount })
@@ -107,7 +113,14 @@ class Game extends Component {
     }
   }
 
+  setScore() {
+    console.log(this.state.openedCount, 'Fichas abiertas');
+    console.log(this.state.counter, 'Tiempo en segundos');
+  }
+
   handleCardClick(tile) {
+    const openedCount = this.state.openedCount + 1;
+    this.setState({ openedCount })
     this.changeOpacity(tile.id, 1)
     this.validateCard(tile)
   }
@@ -148,10 +161,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FDFFFC'
   },
   board: {
-    padding: 20,
+    padding: 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     marginBottom: 10
   }
 })

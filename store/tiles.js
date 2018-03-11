@@ -3,7 +3,7 @@ import TilesList from './TilesList'
 
 export default (gallery) => {
   const data = Object.keys(TilesList[gallery]);
-  const shuffleTiles = shuffle(data).concat(shuffle(data))
+  const shuffleTiles = shuffle(data.concat(data))
 
   return shuffleTiles.map( (tile, index) => (
     {
