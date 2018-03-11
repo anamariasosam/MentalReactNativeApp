@@ -6,13 +6,15 @@ import {
   StyleSheet
 } from 'react-native'
 
-const TileItem = ({ imageUrl, opacity, onPress }) => {
+import imageUrl from '../store/imageUrl'
+
+const TileItem = ({ name, opacity, onPress }) => {
   return (
     <View>
       <TouchableOpacity disabled={opacity ? true : false} style={styles.button} onPress={onPress}>
         <Image
           style={{ width: 50, height: 50, opacity }}
-          source={{uri: imageUrl}}
+          source={imageUrl[name]}
         />
       </TouchableOpacity>
     </View>
