@@ -11,7 +11,7 @@ import TileItem from '../components/TileItem'
 import OverlayContent from '../components/OverlayContent'
 import Status from '../components/Status'
 
-class Home extends Component {
+class Game extends Component {
   static navigationOptions = {
     title: 'Juego de Parejas 🧠',
   }
@@ -162,4 +162,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Home
+export default Game
