@@ -7,25 +7,28 @@ import { Overlay, Text } from 'react-native-elements';
 
 import tiles from '../store/tiles'
 
-import TileItem from '../components/TileItem'
-import OverlayContent from '../components/OverlayContent'
+import Tile from '../components/Tile'
+import WinnerAlert from '../components/WinnerAlert'
 import Status from '../components/Status'
 
 class Game extends Component {
   static navigationOptions = {
     title: 'Juego de Parejas 🧠',
+    headerLeft: null
   }
 
   constructor(props) {
     super(props)
 
+    const gallery = this.props.navigation.state.params.gallery;
     this.state = {
-      tiles: tiles(0),
+      tiles: tiles(gallery),
       selectedCards: [],
       matchedCount: 0,
       levelEnd: false,
       timer: null,
-      counter: 0
+      counter: 0,
+      gallery,
     }
 
     this.tick = this.tick.bind(this)
@@ -111,7 +114,7 @@ class Game extends Component {
 
   renderTiles() {
     return this.state.tiles.map( tile =>
-      <TileItem
+      <Tile
         {...tile}
         key={tile.id}
         onPress={() => this.handleCardClick(tile)}
@@ -130,20 +133,10 @@ class Game extends Component {
           cardsTotal={this.state.tiles.length/2}
           time={this.convertMinsToHrsMins(this.state.counter)}
         />
-        <Overlay
-          isVisible={this.state.levelEnd}
-          windowBackgroundColor='rgba(255, 255, 255, .9)'
-          width='auto'
-          height='auto'
-          overlayBackgroundColor='#E71D36'
-          borderRadius={6}
-          >
-            <OverlayContent
-              text='🎉 TERMINASTE 🎉'
-              buttonText='Siguiente Nivel'
-              navigation={this.props.navigation}
-            />
-        </Overlay>
+        <WinnerAlert
+          visibility={this.state.levelEnd}
+          navigation={this.props.navigation}
+        />
       </View>
     )
   }
@@ -155,6 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FDFFFC'
   },
   board: {
+    padding: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',

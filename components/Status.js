@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    paddingTop: 50,
+    paddingTop: 10,
   },
   infoTypeLabel: {
     fontSize: 20,

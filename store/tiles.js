@@ -1,14 +1,16 @@
-import data from './TilesList.json'
 import shuffle from 'lodash.shuffle'
+import TilesList from './TilesList'
 
-export default (index) => {
-  const shuffleTiles = shuffle(data[index]).concat(shuffle(data[index]))
+export default (gallery) => {
+  const data = Object.keys(TilesList[gallery]);
+  const shuffleTiles = shuffle(data).concat(shuffle(data))
 
   return shuffleTiles.map( (tile, index) => (
     {
       id: index,
-      name: tile.name,
-      opacity: 0
+      name: tile,
+      opacity: 0,
+      gallery
     }
   ))
 }

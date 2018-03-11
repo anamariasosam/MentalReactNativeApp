@@ -3,13 +3,13 @@ import {View} from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 
 import Game from './screens/Game'
-import Ranking from './screens/Ranking'
+import Gallery from './screens/Gallery'
 
 export default class App extends React.Component {
   render() {
     const Navigation = StackNavigator({
+      Gallery: { screen: Gallery },
       Game: { screen: Game },
-      Ranking: { screen: Ranking },
     })
 
     return (
