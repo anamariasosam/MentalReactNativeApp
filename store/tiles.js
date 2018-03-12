@@ -9,7 +9,7 @@ export default (gallery) => {
     {
       id: index,
       name: tile,
-      opacity: 1,
+      opacity: 0,
       gallery
     }
   ))
