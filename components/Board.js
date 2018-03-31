@@ -22,7 +22,6 @@ class Board extends Component {
     super(props)
     this.state = {
       selectedCards: [],
-      matchedCount: 0,
       openedCount: 0,
     }
   }
@@ -56,13 +55,7 @@ class Board extends Component {
             this.handleTileOpacity(selectedCards[1].id, 0)
           }, 500)
         } else {
-          const matchedCount = this.state.matchedCount + 1
-
-          if (matchedCount === this.props.tiles.length / 2) {
-            this.setScore()
-          }
-
-          this.setState({ matchedCount })
+          this.props.countPairs(this.state.openedCount)
         }
 
         this.setState({ selectedCards: [] })
@@ -70,9 +63,6 @@ class Board extends Component {
     }
   }
 
-  setScore() {
-    console.log(this.state.openedCount, 'Fichas abiertas')
-  }
 
   handleCardClick(tile) {
     const openedCount = this.state.openedCount + 1
@@ -83,16 +73,18 @@ class Board extends Component {
 
   render() {
     return (
-      <View style={[styles.board, this.props.isHard && styles.hardLevel]} >
-        {
-          this.props.tiles.map(tile => (
-            <Tile
-              {...tile}
-              key={tile.id}
-              onPress={() => this.handleCardClick(tile)}
-            />
-          ))
-        }
+      <View>
+        <View style={[styles.board, this.props.isHard && styles.hardLevel]} >
+          {
+            this.props.tiles.map(tile => (
+              <Tile
+                {...tile}
+                key={tile.id}
+                onPress={() => this.handleCardClick(tile)}
+              />
+            ))
+          }
+        </View>
       </View>
     )
   }
@@ -101,6 +93,7 @@ class Board extends Component {
 Board.propTypes = {
   tiles: PropTypes.any,
   isHard: PropTypes.bool,
+  countPairs: PropTypes.func,
 }
 
 export default Board

@@ -35,12 +35,12 @@ class Gallery extends Component {
           >
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
               <Button
-                text='Easy'
+                title='Fácil'
                 buttonStyle={styles.button}
                 onPress={() => navigate('Game', { gallery, tilesQuantity: 10 })}
               />
               <Button
-                text='Hard'
+                title='Difícil'
                 buttonStyle={styles.button}
                 onPress={() => navigate('Game', { gallery, tilesQuantity: 15 })}
               />

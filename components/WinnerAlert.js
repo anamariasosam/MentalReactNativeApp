@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const WinnerAlert = ({ navigation, visibility }) => {
+const WinnerAlert = ({ navigation, visibility, score }) => {
   const { navigate } = navigation
 
   return (
@@ -28,12 +28,15 @@ const WinnerAlert = ({ navigation, visibility }) => {
       borderRadius={6}
     >
       <View>
-        <Text h4 style={styles.title}>
+        <Text h3 style={styles.title}>
           🎉 TERMINASTE 🎉
+        </Text>
+        <Text h4 style={styles.title}>
+          Tu puntaje es: {score.toFixed(2)}
         </Text>
         <Button
           buttonStyle={styles.button}
-          text='Ver Galería'
+          title='Ver Galería'
           onPress={() => navigate('Gallery')}
         />
       </View>
@@ -44,6 +47,7 @@ const WinnerAlert = ({ navigation, visibility }) => {
 WinnerAlert.propTypes = {
   navigation: PropTypes.any,
   visibility: PropTypes.bool,
+  score: PropTypes.number,
 }
 
 export default WinnerAlert
