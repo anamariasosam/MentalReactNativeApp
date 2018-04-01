@@ -2,14 +2,14 @@ import React from 'react'
 import { TouchableOpacity, Image, View, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 
-import TilesList from '../store/TilesList'
+import TilesList from '../utils/TilesList'
 
 const styles = StyleSheet.create({
   image: {
     backgroundColor: '#BEBEBE',
+    height: 50,
     padding: 1,
     width: 50,
-    height: 50,
   },
   card: {
     margin: 5,
@@ -37,10 +37,10 @@ const Tile = ({
 )
 
 Tile.propTypes = {
-  name: PropTypes.any,
-  opacity: PropTypes.any,
-  onPress: PropTypes.any,
-  gallery: PropTypes.any,
+  gallery: PropTypes.string,
+  name: PropTypes.string,
+  onPress: PropTypes.func.isRequired,
+  opacity: PropTypes.number,
 }
 
 export default Tile

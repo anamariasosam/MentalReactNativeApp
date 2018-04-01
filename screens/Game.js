@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import PropTypes from 'prop-types'
 
-import tiles from '../store/tiles'
+import tilesGenerator from '../utils/tiles'
 
 import Board from '../components/Board'
 import WinnerAlert from '../components/WinnerAlert'
@@ -35,13 +35,12 @@ class Game extends Component {
     const { gallery, tilesQuantity } = this.props.navigation.state.params
 
     this.state = {
-      tiles: tiles(gallery, tilesQuantity),
+      counter: 0,
       isHard: tilesQuantity === 15,
       levelEnd: false,
-      score: 0,
       matchedCount: 0,
-      timer: null,
-      counter: 0,
+      score: 0,
+      tiles: tilesGenerator(gallery, tilesQuantity),
     }
 
     this.tick = this.tick.bind(this)
@@ -50,12 +49,11 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    const timer = setInterval(this.tick, 1000)
-    this.setState({ timer })
+    this.timer = setInterval(this.tick, 1000)
   }
 
   componentWillUnmount() {
-    this.clearInterval(this.state.timer)
+    window.clearInterval(this.timer)
   }
 
   tick() {
@@ -85,21 +83,25 @@ class Game extends Component {
   }
 
   render() {
+    const {
+      tiles, isHard, matchedCount, counter, score, levelEnd,
+    } = this.state
+
     return (
       <ScrollView style={styles.game}>
         <Board
-          tiles={this.state.tiles}
-          isHard={this.state.isHard}
+          tiles={tiles}
+          isHard={isHard}
           countPairs={this.countPairs}
         />
         <Status
-          matched={this.state.matchedCount}
-          cardsTotal={this.state.tiles.length / 2}
-          time={this.constructor.convertMinsToHrsMins(this.state.counter)}
+          matched={matchedCount}
+          cardsTotal={tiles.length / 2}
+          time={Game.convertMinsToHrsMins(counter)}
         />
         <WinnerAlert
-          visibility={this.state.levelEnd}
-          score={this.state.score}
+          visibility={levelEnd}
+          score={score}
           navigation={this.props.navigation}
         />
       </ScrollView>

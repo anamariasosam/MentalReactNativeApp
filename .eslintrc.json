@@ -5,6 +5,9 @@
     "react-native",
     "import"
   ],
+  "globals": {
+    "window": true
+  },
   "parserOptions": {
     "ecmaFeatures": {
         "jsx": true,

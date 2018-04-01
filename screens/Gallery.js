@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 import { Card, Button } from 'react-native-elements'
 import PropTypes from 'prop-types'
 
-import GalleryList from '../store/GalleryList'
+import GalleryList from '../utils/GalleryList'
 
 const styles = StyleSheet.create({
   button: {

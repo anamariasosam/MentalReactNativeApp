@@ -6,9 +6,9 @@ import Tile from '../components/Tile'
 
 const styles = StyleSheet.create({
   board: {
+    alignSelf: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignSelf: 'center',
     margin: 10,
     maxWidth: 248,
   },
@@ -18,11 +18,12 @@ const styles = StyleSheet.create({
 })
 
 class Board extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
+
     this.state = {
-      selectedCards: [],
       openedCount: 0,
+      selectedCards: [],
     }
   }
 
@@ -41,40 +42,38 @@ class Board extends Component {
   }
 
   // Validate two cards openened
-  validateCard(tile) {
+  handleCardClick(tile) {
     const cards = this.state.selectedCards
+    const openedCount = this.state.openedCount + 1
+
+    this.handleTileOpacity(tile.id, 1)
 
     if (cards.length < 2) {
       const selectedCards = [...cards, tile]
       this.setState({ selectedCards })
 
       if (selectedCards.length === 2) {
-        if (selectedCards[0].name !== selectedCards[1].name) {
+        const isDifferentCard = selectedCards[0].name !== selectedCards[1].name
+
+        if (isDifferentCard) {
           setTimeout(() => {
             this.handleTileOpacity(selectedCards[0].id, 0)
             this.handleTileOpacity(selectedCards[1].id, 0)
           }, 500)
         } else {
-          this.props.countPairs(this.state.openedCount)
+          this.props.countPairs(openedCount)
         }
 
         this.setState({ selectedCards: [] })
       }
     }
-  }
-
-
-  handleCardClick(tile) {
-    const openedCount = this.state.openedCount + 1
     this.setState({ openedCount })
-    this.handleTileOpacity(tile.id, 1)
-    this.validateCard(tile)
   }
 
   render() {
     return (
       <View>
-        <View style={[styles.board, this.props.isHard && styles.hardLevel]} >
+        <View style={[styles.board, this.props.isHard && styles.hardLevel]}>
           {
             this.props.tiles.map(tile => (
               <Tile

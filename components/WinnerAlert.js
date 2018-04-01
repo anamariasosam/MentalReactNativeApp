@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF9F1C',
   },
   title: {
+    color: 'white',
     marginBottom: 10,
     textAlign: 'center',
-    color: 'white',
   },
 })
 
@@ -20,12 +20,12 @@ const WinnerAlert = ({ navigation, visibility, score }) => {
 
   return (
     <Overlay
-      isVisible={visibility}
-      windowBackgroundColor='rgba(255, 255, 255, .9)'
-      width='auto'
-      height='auto'
-      overlayBackgroundColor='#E71D36'
       borderRadius={6}
+      height="auto"
+      isVisible={visibility}
+      overlayBackgroundColor="#E71D36"
+      width="auto"
+      windowBackgroundColor="rgba(255, 255, 255, .9)"
     >
       <View>
         <Text h3 style={styles.title}>
@@ -36,7 +36,7 @@ const WinnerAlert = ({ navigation, visibility, score }) => {
         </Text>
         <Button
           buttonStyle={styles.button}
-          title='Ver Galería'
+          title="Ver Galería"
           onPress={() => navigate('Gallery')}
         />
       </View>
