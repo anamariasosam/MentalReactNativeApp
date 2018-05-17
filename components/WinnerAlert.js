@@ -7,6 +7,11 @@ import { View, StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#FF9F1C',
+    borderRadius: 5,
+    marginLeft: 30,
+    marginRight: 30,
+    marginBottom: 20,
+    marginTop: 10,
   },
   title: {
     color: 'white',
@@ -21,9 +26,9 @@ const WinnerAlert = ({ navigation, visibility, score }) => {
   return (
     <Overlay
       borderRadius={6}
-      height="auto"
       isVisible={visibility}
       overlayBackgroundColor="#E71D36"
+      height="auto"
       width="auto"
       windowBackgroundColor="rgba(255, 255, 255, .9)"
     >
@@ -38,6 +43,11 @@ const WinnerAlert = ({ navigation, visibility, score }) => {
           buttonStyle={styles.button}
           title="Ver Galería"
           onPress={() => navigate('Gallery')}
+        />
+        <Button
+          buttonStyle={styles.button}
+          title="Ver Ranking"
+          onPress={() => navigate('Ranking')}
         />
       </View>
     </Overlay>

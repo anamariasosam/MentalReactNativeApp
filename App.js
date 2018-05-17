@@ -4,11 +4,13 @@ import { StackNavigator } from 'react-navigation'
 
 import Game from './screens/Game'
 import Gallery from './screens/Gallery'
+import Ranking from './screens/Ranking'
 
 const App = () => {
   const Navigation = StackNavigator({
     Gallery: { screen: Gallery },
     Game: { screen: Game },
+    Ranking: { screen: Ranking },
   })
 
   return (
